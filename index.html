@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Solodevr - Coming Soon</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f4f4f5;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flex flex-col items-center bg-white p-8 rounded-lg shadow-lg max-w-md w-full text-center">
+      <h1 class="text-3xl font-bold text-gray-900 mb-2">Solodevr</h1>
+      <p class="text-gray-600 mb-8">Website is under construction</p>
+
+      <div class="flex space-x-4 mb-8">
+        <div class="flex flex-col items-center p-2 border-[1px] border-gray-300 rounded">
+          <span id="days" class="text-4xl font-bold text-gray-900">30</span>
+          <span class="text-sm text-gray-600">Days</span>
+        </div>
+
+        <div class="flex flex-col items-center p-2 border-[1px] border-gray-300 rounded">
+          <span id="hours" class="text-4xl font-bold text-gray-900">00</span>
+          <span class="text-sm text-gray-600">Hours</span>
+        </div>
+
+        <div class="flex flex-col items-center p-2 border-[1px] border-gray-300 rounded">
+          <span id="minutes" class="text-4xl font-bold text-gray-900">00</span>
+          <span class="text-sm text-gray-600">Minutes</span>
+        </div>
+
+        <div class="flex flex-col items-center p-2 border-[1px] border-gray-300 rounded">
+          <span id="seconds" class="text-4xl font-bold text-gray-900">00</span>
+          <span class="text-sm text-gray-600">Seconds</span>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Set the target date here in the format "Month Day, Year HH:MM:SS"
+      const targetDate = new Date("December 01, 2024 23:59:59").getTime();
+
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("days").innerText = days;
+        document.getElementById("hours").innerText = hours;
+        document.getElementById("minutes").innerText = minutes;
+        document.getElementById("seconds").innerText = seconds;
+
+        if (distance < 0) {
+          clearInterval(countdownInterval);
+          document.querySelector(".text-center").innerHTML =
+            "<h1 class='text-3xl font-bold text-gray-900 mb-2'>We're Live!</h1>";
+        }
+      }
+
+      const countdownInterval = setInterval(updateCountdown, 1000);
+      updateCountdown();
+    </script>
+  </body>
+</html>
